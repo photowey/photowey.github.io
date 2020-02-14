@@ -71,6 +71,115 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Sprign-Cloud-Feign-Client 版本适配" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/14/Sprign-Cloud-Feign-Client%20%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D/" class="article-date">
+  <time datetime="2020-02-14T05:24:28.697Z" itemprop="datePublished">2020-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/14/Sprign-Cloud-Feign-Client%20%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D/">Spring Cloud FrignClient 版本适配</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<blockquote>
+<p><strong>目的: 高版本能够通过FeignClient 发起对低版本的调用，特别是在跨JDK版本的场景</strong></p>
+</blockquote>
+<h2 id="1-EnableXxx-注解"><a href="#1-EnableXxx-注解" class="headerlink" title="1.EnableXxx 注解"></a>1.<code>EnableXxx</code> 注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 启动客户端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Retention</span>(value = java.lang.annotation.RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(value = &#123;java.lang.annotation.ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(value = &#123;</span><br><span class="line">        ClientConfiguration<span class="class">.<span class="keyword">class</span>,</span></span><br><span class="line"><span class="class">        <span class="title">FinanceFeignClientImportSelector</span>.<span class="title">class</span></span></span><br><span class="line"><span class="class">&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableFinanceClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;dependency&gt;</span></span><br><span class="line"><span class="comment">     * &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span></span><br><span class="line"><span class="comment">     * &lt;artifactId&gt;spring-cloud-openfeign-core&lt;/artifactId&gt;</span></span><br><span class="line"><span class="comment">     * &lt;version&gt;2.1.2.RELEASE&lt;/version&gt;</span></span><br><span class="line"><span class="comment">     * &lt;scope&gt;provided&lt;/scope&gt;</span></span><br><span class="line"><span class="comment">     * &lt;/dependency&gt;</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     * 版本 1.5.9.RELEASE</span></span><br><span class="line"><span class="comment">     * JDK 7</span></span><br><span class="line"><span class="comment">     * 平台库:1.x</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Configuration</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.cloud.netflix.feign.EnableFeignClients(basePackages = <span class="string">"com.xxx.xxx.client.feign"</span>)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">FeignConfigurationForSpringCloudJdk7</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 版本 2.1.2.RELEASE</span></span><br><span class="line"><span class="comment">     * JDK 11</span></span><br><span class="line"><span class="comment">     * 平台库:2.x</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Configuration</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.cloud.openfeign.EnableFeignClients(basePackages = <span class="string">"com.xxx.xxx.client.feign"</span>)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">FeignConfigurationForSpringCloudJdk11</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-Client-配置"><a href="#2-Client-配置" class="headerlink" title="2.Client 配置"></a>2.<code>Client</code> 配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 客户端配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span>(<span class="string">"com.xxx.xxx.client.ClientConfiguration"</span>)</span><br><span class="line"><span class="comment">//@EnableFeignClients(basePackages = "com.xxx.xxx.client.feign")</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(<span class="string">"com.xxx.xxx.client"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClientConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-ImportSelector策略"><a href="#3-ImportSelector策略" class="headerlink" title="3.ImportSelector策略"></a>3.<code>ImportSelector</code>策略</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * FinanceFeignClientImportSelector</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> WcJun</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/02/12</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinanceFeignClientImportSelector</span> <span class="keyword">implements</span> <span class="title">ImportSelector</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String[] selectImports(AnnotationMetadata importingClassMetadata) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ClassUtils.isPresent(<span class="string">"org.springframework.cloud.netflix.feign.FeignClient"</span>, <span class="keyword">this</span>.getClass().getClassLoader())) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;EnableFinanceClient.FeignConfigurationForSpringCloudJdk7<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>()&#125;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ClassUtils.isPresent(<span class="string">"org.springframework.cloud.openfeign.FeignClient"</span>, <span class="keyword">this</span>.getClass().getClassLoader())) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;EnableFinanceClient.FeignConfigurationForSpringCloudJdk11<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>()&#125;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-FeignClient-API"><a href="#4-FeignClient-API" class="headerlink" title="4.FeignClient API"></a>4.<code>FeignClient API</code></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Api</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * sayHello</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> say-hello</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/xxx/say-hello"</span>)</span><br><span class="line">    <span class="function">String <span class="title">sayHello</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-API-Adaptor"><a href="#5-API-Adaptor" class="headerlink" title="5.API Adaptor"></a>5.<code>API Adaptor</code></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务接口声明</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> WcJun</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinanceApiAdaptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ======================================================================== 1.x JDK7</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@org</span>.springframework.cloud.netflix.feign.FeignClient(name = <span class="string">"XXX_XXX_CLIENT"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApiJdk7</span> <span class="keyword">extends</span> <span class="title">Api</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ======================================================================== 2.x JDK11</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@org</span>.springframework.cloud.openfeign.FeignClient(name = <span class="string">"XXX_XXX_CLIENT"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApiJdk11</span> <span class="keyword">extends</span> <span class="title">Api</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-pom-xml"><a href="#6-pom-xml" class="headerlink" title="6.pom.xml"></a>6.<code>pom.xml</code></h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- e.g. 2.1.2.RELEASE --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- for spring cloud 2.x --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-openfeign-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud-openfeign-core&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/14/Sprign-Cloud-Feign-Client%20%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D/" data-id="ck6lqcrdk0000y4q38sob3k70" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-aop-execute-sequence" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/14/aop-execute-sequence/" class="article-date">
+  <time datetime="2020-02-14T05:19:22.820Z" itemprop="datePublished">2020-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/14/aop-execute-sequence/">AOP执行顺序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1、PonintCut"><a href="#1、PonintCut" class="headerlink" title="1、PonintCut"></a>1、PonintCut</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut</span>(<span class="string">"execution(* com.xxx.xxx.provider.service.AopService.sayHello(..))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、增强"><a href="#2、增强" class="headerlink" title="2、增强"></a>2、增强</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">"sayHello()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(JoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    Object[] params = <span class="keyword">this</span>.handleArgs(joinPoint);</span><br><span class="line">    log.info(<span class="string">"==&gt; Before Before -------------------------------"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Around</span>(<span class="string">"sayHello()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">process</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    log.info(<span class="string">"==&gt; Around Around BEFORE -------------------------------"</span>);</span><br><span class="line">    Object rvt = joinPoint.proceed();</span><br><span class="line">    log.info(<span class="string">"==&gt; Around Around AFTER -------------------------------"</span>);</span><br><span class="line">    <span class="keyword">return</span> rvt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@After</span>(value = <span class="string">"sayHello()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">(JoinPoint joinPoint)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    log.info(<span class="string">"==&gt; After After -------------------------------"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@AfterReturning</span>(value = <span class="string">"sayHello()"</span>, returning = <span class="string">"result"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">(JoinPoint joinPoint, Object result)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    log.info(<span class="string">"==&gt; AfterReturning AfterReturning -------------------------------&#123;&#125;"</span>, result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@AfterThrowing</span>(value = <span class="string">"sayHello()"</span>, throwing = <span class="string">"ex"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">(JoinPoint joinPoint, Exception ex)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    log.info(<span class="string">"==&gt; AfterThrowing AfterThrowing -------------------------------"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、booleanTestService-sayHello"><a href="#3、booleanTestService-sayHello" class="headerlink" title="3、booleanTestService.sayHello"></a>3、booleanTestService.sayHello</h2><h3 id="3-1、正常-执行结果"><a href="#3-1、正常-执行结果" class="headerlink" title="3.1、正常-执行结果"></a>3.1、正常-执行结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Around Around BEFORE -------------------------------</span><br><span class="line">==&gt; Before Before -------------------------------</span><br><span class="line">==&gt; Around Around AFTER -------------------------------</span><br><span class="line">==&gt; After After -------------------------------</span><br><span class="line">==&gt; AfterReturning AfterReturning -------------------------------<span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、异常-执行结果"><a href="#3-2、异常-执行结果" class="headerlink" title="3.2、异常-执行结果"></a>3.2、异常-执行结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Around Around BEFORE -------------------------------</span><br><span class="line">==&gt; Before Before -------------------------------</span><br><span class="line">==&gt; After After -------------------------------</span><br><span class="line">==&gt; AfterThrowing AfterThrowing -------------------------------</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、String-TestService-sayHello"><a href="#4、String-TestService-sayHello" class="headerlink" title="4、String TestService.sayHello"></a>4、String TestService.sayHello</h2><h3 id="4-1、正常-执行结果"><a href="#4-1、正常-执行结果" class="headerlink" title="4.1、正常-执行结果"></a>4.1、正常-执行结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Around Around BEFORE -------------------------------</span><br><span class="line">==&gt; Before Before -------------------------------</span><br><span class="line">==&gt; Around Around AFTER -------------------------------</span><br><span class="line">==&gt; After After -------------------------------</span><br><span class="line">==&gt; AfterReturning AfterReturning -------------------------------say hello</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2、异常-执行结果"><a href="#4-2、异常-执行结果" class="headerlink" title="4.2、异常-执行结果"></a>4.2、异常-执行结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Around Around BEFORE -------------------------------</span><br><span class="line">==&gt; Before Before -------------------------------</span><br><span class="line">==&gt; After After -------------------------------</span><br><span class="line">==&gt; AfterThrowing AfterThrowing -------------------------------</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/14/aop-execute-sequence/" data-id="ck6lqcrdr0001y4q314hb9wwk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-docker-notes" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/02/03/docker-notes/" class="article-date">
@@ -123,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/03/docker-notes/" data-id="ck66mcxq00000zkq3c7zr8ug2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/03/docker-notes/" data-id="ck6lqcrds0002y4q33wkq3hfr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -162,6 +271,14 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/02/14/Sprign-Cloud-Feign-Client%20%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D/">Spring Cloud FrignClient 版本适配</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/14/aop-execute-sequence/">AOP执行顺序</a>
+          </li>
         
           <li>
             <a href="/2020/02/03/docker-notes/">Docker Notes</a>
