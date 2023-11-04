@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Docker Notes | photowey blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.Install1234567891011121314151617$ uname -r$ sudo yum update$ sudo yum remove docker  docker-common docker-selinux docker-engine$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2$ sud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Notes">
+<meta property="og:url" content="http://github.com/photowey/2023/11/04/docker-notes/index.html">
+<meta property="og:site_name" content="photowey blog">
+<meta property="og:description" content="1.Install1234567891011121314151617$ uname -r$ sudo yum update$ sudo yum remove docker  docker-common docker-selinux docker-engine$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2$ sud">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-04T09:34:43.611Z">
+<meta property="article:modified_time" content="2023-11-04T09:04:36.028Z">
+<meta property="article:author" content="photowey">
+<meta property="article:tag" content="bolg">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="photowey blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">photowey blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/photowey"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docker-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/04/docker-notes/" class="article-date">
+  <time datetime="2023-11-04T09:34:43.611Z" itemprop="datePublished">2023-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker Notes
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Install"><a href="#1-Install" class="headerlink" title="1.Install"></a>1.<code>Install</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">uname</span> -r</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo yum update</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo yum remove docker  docker-common docker-selinux docker-engine</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">yum list docker-ce --showduplicates | <span class="built_in">sort</span> -r</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo yum install -y docker-ce</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo systemctl start docker</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo systemctl <span class="built_in">enable</span> docker</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker version</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-MySQL"><a href="#2-MySQL" class="headerlink" title="2.MySQL"></a>2.<code>MySQL</code></h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MySQL</span></span><br><span class="line"><span class="variable">$</span> docker run <span class="literal">-itd</span> <span class="literal">--restart</span> always \</span><br><span class="line"><span class="literal">-v</span> /opt/mysql/conf:/etc/mysql/conf.d \</span><br><span class="line"><span class="literal">-v</span> /opt/mysql/logs:/logs \</span><br><span class="line"><span class="literal">-v</span> /opt/mysql/<span class="keyword">data</span>:/var/lib/mysql \</span><br><span class="line"><span class="literal">-e</span> TZ=Asia/Shanghai \</span><br><span class="line"><span class="literal">-v</span> /etc/localtime:/etc/localtime:ro \</span><br><span class="line"><span class="literal">-e</span> MYSQL_ROOT_PASSWORD=root \</span><br><span class="line"><span class="literal">-e</span> MYSQL_ROOT_PASSWORD=root \</span><br><span class="line"><span class="literal">-p</span> <span class="number">3306</span>:<span class="number">3306</span> \</span><br><span class="line"><span class="literal">--name</span> mysql mysql:<span class="number">5.7</span> \</span><br><span class="line"><span class="literal">--character-set-server</span>=utf8mb4 \</span><br><span class="line"><span class="literal">--collation-server</span>=utf8mb4_unicode_ci \</span><br><span class="line"><span class="literal">--init-connect</span>=<span class="string">&#x27;SET NAMES utf8mb4;&#x27;</span> \</span><br><span class="line"><span class="literal">--default-time-zone</span>=<span class="string">&#x27;+8:00&#x27;</span> \</span><br><span class="line"><span class="literal">--log-timestamps</span>=SYSTEM \</span><br><span class="line"><span class="literal">--sql_mode</span>=<span class="string">&#x27;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-Redis"><a href="#3-Redis" class="headerlink" title="3.Redis"></a>3.<code>Redis</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Redis</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -itd \</span></span><br><span class="line"><span class="language-bash">--restart always --name redis \</span></span><br><span class="line"><span class="language-bash">-e TZ=Asia/Shanghai \</span></span><br><span class="line"><span class="language-bash">-v /etc/localtime:/etc/localtime:ro \</span></span><br><span class="line"><span class="language-bash">-p 6379:6379 \</span></span><br><span class="line"><span class="language-bash">-v /opt/redis/data:/data \</span></span><br><span class="line"><span class="language-bash">-v /opt/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf \</span></span><br><span class="line"><span class="language-bash">-d  redis:4.0 redis-server /usr/local/etc/redis/redis.conf \</span></span><br><span class="line"><span class="language-bash">--appendonly <span class="built_in">yes</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-RabbitMQ"><a href="#3-RabbitMQ" class="headerlink" title="3.RabbitMQ"></a>3.<code>RabbitMQ</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">RabbitMQ</span></span><br><span class="line">docker run -itd \</span><br><span class="line">--restart always \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro \</span><br><span class="line">--name rabbitmq \</span><br><span class="line">-p 4369:4369 \</span><br><span class="line">-p 5671:5671 \</span><br><span class="line">-p 5672:5672 \</span><br><span class="line">-p 25672:25672 \</span><br><span class="line">-p 15671:15671 \</span><br><span class="line">-p 15672:15672 \</span><br><span class="line">rabbitmq:3.7.7-management</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="4-MongoDB"><a href="#4-MongoDB" class="headerlink" title="4.MongoDB"></a>4.<code>MongoDB</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Mongo 启动命令</span></span><br><span class="line">docker run -itd --restart always --name mongo \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e MONGO_INITDB_ROOT_USERNAME=mongo \</span><br><span class="line">-e MONGO_INITDB_ROOT_PASSWORD=mongo \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro \</span><br><span class="line">-v /opt/mongo/data:/data/db \</span><br><span class="line">-p 27017:27017 \</span><br><span class="line">-d mongo:4.0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-Consul"><a href="#5-Consul" class="headerlink" title="5.Consul"></a>5.<code>Consul</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name consul \</span><br><span class="line">--net=host \</span><br><span class="line">-p 8500:8500 \</span><br><span class="line">-e &#x27;CONSUL_LOCAL_CONFIG=&#123;&quot;leave_on_terminate&quot;: true&#125;&#x27; \</span><br><span class="line">consul:1.4.4 agent \</span><br><span class="line">-serverc \</span><br><span class="line">-bind=192.168.2.123 \</span><br><span class="line">-server \</span><br><span class="line">-bootstrap-expect=1 \</span><br><span class="line">-client 0.0.0.0 \</span><br><span class="line">-ui</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-Portainer"><a href="#6-Portainer" class="headerlink" title="6. Portainer"></a>6. <code>Portainer</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -itd -p 8899:9000 \</span></span><br><span class="line"><span class="language-bash">    --restart=always \</span></span><br><span class="line"><span class="language-bash">    -v /var/run/docker.sock:/var/run/docker.sock \</span></span><br><span class="line"><span class="language-bash">    --name prtainer \</span></span><br><span class="line"><span class="language-bash">    docker.io/portainer/portainer:1.21.0</span></span><br><span class="line">    </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data_portainer/portainer</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Cluster</span></span></span><br><span class="line">docker service create \</span><br><span class="line">--name portainer \</span><br><span class="line">--publish 9000:9000 \</span><br><span class="line">--replicas=1 \</span><br><span class="line">--constraint &#x27;node.role == manager&#x27; \</span><br><span class="line">--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \</span><br><span class="line">--mount type=bind,src=//opt/portainer,dst=/data \</span><br><span class="line">portainer/portainer \</span><br><span class="line">-H unix:///var/run/docker.sock</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://github.com/photowey/2023/11/04/docker-notes/" data-id="clojuwuel000080v6bkerbdib" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/11/04/docker-notes/">Docker Notes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 photowey<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
