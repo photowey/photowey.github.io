@@ -363,40 +363,40 @@
 </span><span class="kw">pub struct </span>Constants;
 
 <span class="kw">impl </span>Constants {
-    <span class="doccomment">/// [`EPOCH`] `2023-04-05 06:07:08`
+    <span class="doccomment">/// `EPOCH` `2023-04-05 06:07:08`
     </span><span class="kw">pub const </span>EPOCH: u64 = <span class="number">1680646028000</span>; <span class="comment">// 2023-04-05 06:07:08
 
-    </span><span class="doccomment">/// [`DATA_CENTER_ID_BITS`] data-center bits: 5
+    </span><span class="doccomment">/// `DATA_CENTER_ID_BITS` data-center bits: 5
     </span><span class="kw">pub const </span>DATA_CENTER_ID_BITS: u64 = <span class="number">5</span>;
-    <span class="doccomment">/// [`WORKER_ID_BITS`] worker bits: 5
+    <span class="doccomment">/// `WORKER_ID_BITS` worker bits: 5
     </span><span class="kw">pub const </span>WORKER_ID_BITS: u64 = <span class="number">5</span>;
 
-    <span class="doccomment">/// [`SEQUENCE_BITS`] sequence bits: 12
+    <span class="doccomment">/// `SEQUENCE_BITS` sequence bits: 12
     </span><span class="kw">pub const </span>SEQUENCE_BITS: u64 = <span class="number">12</span>;
 
-    <span class="doccomment">/// [`MAX_DATA_CENTER_ID`] max data-center ID: 31
+    <span class="doccomment">/// `MAX_DATA_CENTER_ID` max data-center ID: 31
     </span><span class="kw">pub const </span>MAX_DATA_CENTER_ID: u64 = !(!<span class="number">0 </span>&lt;&lt; Constants::DATA_CENTER_ID_BITS);
-    <span class="doccomment">/// [`SEQUENCE_MASK`] max worker ID: 31
+    <span class="doccomment">/// `SEQUENCE_MASK` max worker ID: 31
     </span><span class="kw">pub const </span>MAX_WORKER_ID: u64 = !(!<span class="number">0 </span>&lt;&lt; Constants::WORKER_ID_BITS);
 
-    <span class="doccomment">/// [`SEQUENCE_MASK`] sequence mask: 4095
+    <span class="doccomment">/// `SEQUENCE_MASK` sequence mask: 4095
     </span><span class="kw">pub const </span>SEQUENCE_MASK: u64 = !(!<span class="number">0 </span>&lt;&lt; Constants::SEQUENCE_BITS);
 
-    <span class="doccomment">/// [`WORKER_ID_SHIFT`] worker ID shift: 12
+    <span class="doccomment">/// `WORKER_ID_SHIFT` worker ID shift: 12
     </span><span class="kw">pub const </span>WORKER_ID_SHIFT: u64 = Constants::SEQUENCE_BITS;
-    <span class="doccomment">/// [`CENTER_ID_SHIFT`] center ID shift: 17
+    <span class="doccomment">/// `CENTER_ID_SHIFT` center ID shift: 17
     </span><span class="kw">pub const </span>CENTER_ID_SHIFT: u64 = Constants::SEQUENCE_BITS + Constants::WORKER_ID_BITS;
 
-    <span class="doccomment">/// [`TIMESTAMP_SHIFT`] timestamp left shift: 22
+    <span class="doccomment">/// `TIMESTAMP_SHIFT` timestamp left shift: 22
     </span><span class="kw">pub const </span>TIMESTAMP_SHIFT: u64 =
         Constants::DATA_CENTER_ID_BITS + Constants::WORKER_ID_BITS + Constants::SEQUENCE_BITS;
 
     <span class="comment">// ----------------------------------------------------------------
 
-    </span><span class="doccomment">/// [`DEFAULT_DATA_CENTER_ID`] default data-center ID: 1
+    </span><span class="doccomment">/// `DEFAULT_DATA_CENTER_ID` default data-center ID: 1
     </span><span class="kw">pub const </span>DEFAULT_DATA_CENTER_ID: u64 = <span class="number">1</span>;
 
-    <span class="doccomment">/// [`DEFAULT_WORKER_ID`] default worker ID: 1
+    <span class="doccomment">/// `DEFAULT_WORKER_ID` default worker ID: 1
     </span><span class="kw">pub const </span>DEFAULT_WORKER_ID: u64 = <span class="number">1</span>;
 }
 
