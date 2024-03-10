@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["dynamic_next_id","dynamic_next_id_string","next_id","next_id_string"],"macro":["snowflake_builtin","snowflake_builtin_string","snowflake_dynamic","snowflake_dynamic_string"],"mod":["generator","hashcode","infras","macros"]};

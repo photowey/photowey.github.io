@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["InterfaceError"],"fn":["try_get_data_center_id","try_get_worker_id"]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["SnowflakeError"],"struct":["Constants","SnowflakeGenerator"],"trait":["Generator"]};
