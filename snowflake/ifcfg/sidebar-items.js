@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["AddressFamily","Hops","IfCfgError"],"struct":["IfCfg","InterfaceAddress"],"type":["Result"]};

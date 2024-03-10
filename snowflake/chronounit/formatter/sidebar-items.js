@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["pattern"],"struct":["DefaultDateTimeFormatter"],"trait":["DateTimeFormatter"]};

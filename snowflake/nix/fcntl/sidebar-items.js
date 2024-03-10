@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["FcntlArg","FlockArg","PosixFadviseAdvice"],"fn":["copy_file_range","fallocate","fcntl","flock","open","openat","posix_fadvise","posix_fallocate","readlink","readlinkat","renameat","splice","tee","vmsplice"],"struct":["AtFlags","FallocateFlags","FdFlag","OFlag","SealFlag","SpliceFFlags"]};
